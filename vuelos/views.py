@@ -1,4 +1,3 @@
-from copy import error
 from django.shortcuts import render
 
 from .utils import buscar_solucion_BFS, conexiones
@@ -24,10 +23,11 @@ def index(request):
                 camino.reverse()
                 resultado = camino 
             else:
-                error="No se encontro camino"
+                error="No se encontró camino"
         else:
-            error="ingresa ciudades validas"
+            error="Ingresa ciudades válidas"
     return render(request, 'vuelos/index.html', {
         'resultado' : resultado,
-        'error': error
+        'error': error,
+        'ciudades': sorted(conexiones.keys())
 })
