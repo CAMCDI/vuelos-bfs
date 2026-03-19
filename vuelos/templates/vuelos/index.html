@@ -16,16 +16,10 @@
         <form method="POST">
             {% csrf_token %}
             <label>Origen</label>
-            <input type="text" name="origen" placeholder="jiloyork" required list="ciudades_list">
+            <input type="text" name="origen" placeholder="jiloyork" required>
 
             <label>Destino</label>
-            <input type="text" name="destino" placeholder="zacatecas" required list="ciudades_list">
-
-            <datalist id="ciudades_list">
-                {% for ciudad in ciudades %}
-                <option value="{{ ciudad }}">
-                    {% endfor %}
-            </datalist>
+            <input type="text" name="destino" placeholder="zacatecas" required>
 
             <button type="submit">Buscar Ruta</button>
         </form>
