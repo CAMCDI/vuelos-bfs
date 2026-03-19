@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuelos BFS</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Vuelos BFS</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label>Origen</label>
+            <input type="text" name="origen" placeholder="jiloyork" required list="ciudades_list">
+
+            <label>Destino</label>
+            <input type="text" name="destino" placeholder="zacatecas" required list="ciudades_list">
+
+            <datalist id="ciudades_list">
+                {% for ciudad in ciudades %}
+                <option value="{{ ciudad }}">
+                    {% endfor %}
+            </datalist>
+
+            <button type="submit">Buscar Ruta</button>
+        </form>
+
+        <hr>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if resultado %}
+        <div class="resultado">
+            <h2>Ruta encontrada:</h2>
+            <p><strong>Ruta:</strong> {{ resultado|join:" ➔ " }}</p>
+            <p>Escalas: {{ resultado|length|add:"-1" }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
